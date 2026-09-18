@@ -1,0 +1,275 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Light theme (default) */
+:root,
+.light {
+  --bg: #fbfbfc;
+  --surface: #ffffff;
+  --surface-2: #f6f7f9;
+  --border: #eceef2;
+  --border-strong: #d8dce4;
+  --text: #0e1116;
+  --muted: #6b7280;
+  --subtle: #9aa3b2;
+  --accent: #5e6ad2;
+  --accent-soft: #eef0fb;
+  --accent-text: #ffffff;
+  --danger: #e5484d;
+  --danger-soft: #fdecec;
+  --warning: #f5a524;
+  --warning-soft: #fef4e3;
+  --success: #30a46c;
+  --success-soft: #e8f6ee;
+}
+
+/* Dark theme */
+.dark {
+  --bg: #08090b;
+  --surface: #0f1115;
+  --surface-2: #16181d;
+  --border: #1d2028;
+  --border-strong: #2a2e38;
+  --text: #e6e8ee;
+  --muted: #8b94a7;
+  --subtle: #5b6371;
+  --accent: #8b95f5;
+  --accent-soft: #1a1f3d;
+  --accent-text: #0b0c10;
+  --danger: #ff6369;
+  --danger-soft: #2a1416;
+  --warning: #ffb547;
+  --warning-soft: #2a1f10;
+  --success: #4cc38a;
+  --success-soft: #102017;
+}
+
+html, body {
+  height: 100%;
+  background: var(--bg);
+  color: var(--text);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11", "ss01";
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 14px;
+  letter-spacing: -0.011em;
+}
+
+::selection { background: rgba(94, 106, 210, 0.25); }
+
+/* ---- Surfaces ---- */
+.surface {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+}
+.surface-2 { background: var(--surface-2); }
+.hairline { border-color: var(--border); }
+.hover-row:hover { background: var(--surface-2); }
+
+/* ---- Inputs ---- */
+.input, .select, .textarea {
+  width: 100%;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 13px;
+  color: var(--text);
+  transition: border-color 0.12s, box-shadow 0.12s;
+}
+.input:focus, .select:focus, .textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 22%, transparent);
+}
+.textarea { min-height: 84px; resize: vertical; line-height: 1.55; }
+.label {
+  display: block;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--muted);
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---- Buttons ---- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 13px;
+  font-weight: 500;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: background 0.12s, border-color 0.12s, color 0.12s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+.btn:hover { background: var(--surface-2); border-color: var(--border-strong); }
+.btn:active { transform: translateY(0.5px); }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-text);
+}
+.btn-primary:hover {
+  background: color-mix(in srgb, var(--accent) 88%, black);
+  border-color: transparent;
+}
+.btn-danger {
+  color: var(--danger);
+  border-color: color-mix(in srgb, var(--danger) 40%, var(--border));
+  background: var(--danger-soft);
+}
+.btn-danger:hover { filter: brightness(0.96); }
+.btn-ghost { border-color: transparent; background: transparent; }
+.btn-ghost:hover { background: var(--surface-2); }
+.btn-sm { padding: 3px 7px; font-size: 12px; border-radius: 5px; }
+
+/* ---- Badges / pills ---- */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 1px 7px;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  line-height: 18px;
+  letter-spacing: 0;
+}
+.pill-dot::before {
+  content: "";
+  width: 6px; height: 6px;
+  border-radius: 999px;
+  background: currentColor;
+}
+
+/* Priority colors */
+.prio-urgent { color: var(--danger); background: var(--danger-soft); }
+.prio-high   { color: var(--warning); background: var(--warning-soft); }
+.prio-normal { color: var(--accent); background: var(--accent-soft); }
+.prio-low    { color: var(--muted); background: var(--surface-2); }
+
+/* SLA colors */
+.sla-ok    { color: var(--success); background: var(--success-soft); }
+.sla-warn  { color: var(--warning); background: var(--warning-soft); }
+.sla-over  { color: var(--danger);  background: var(--danger-soft); }
+.sla-met   { color: var(--success); background: var(--success-soft); }
+
+/* iPad status */
+.status-in_stock         { color: var(--accent);   background: var(--accent-soft); }
+.status-loaned           { color: #6f5cf3;        background: color-mix(in srgb, #6f5cf3 14%, var(--surface-2)); }
+.status-needs_setup      { color: var(--warning);  background: var(--warning-soft); }
+.status-broken           { color: var(--danger);   background: var(--danger-soft); }
+.status-sent_for_repair  { color: #c466ff;         background: color-mix(in srgb, #c466ff 14%, var(--surface-2)); }
+.status-retired          { color: var(--subtle);   background: var(--surface-2); }
+
+/* Ticket status (reuses prio + sla palettes) */
+.tstat-open        { color: var(--accent); background: var(--accent-soft); }
+.tstat-in_progress { color: var(--warning); background: var(--warning-soft); }
+.tstat-waiting     { color: var(--muted); background: var(--surface-2); }
+.tstat-resolved    { color: var(--success); background: var(--success-soft); }
+.tstat-closed      { color: var(--subtle); background: var(--surface-2); }
+
+/* ---- Nav ---- */
+.nav-link {
+  display: flex; align-items: center; gap: 9px;
+  padding: 5px 9px;
+  border-radius: 6px;
+  font-size: 13px;
+  color: var(--muted);
+  transition: background 0.1s, color 0.1s;
+}
+.nav-link:hover { background: var(--surface-2); color: var(--text); }
+.nav-link.active { background: var(--accent-soft); color: var(--accent); font-weight: 500; }
+
+/* ---- Tables ---- */
+.tbl { width: 100%; border-collapse: separate; border-spacing: 0; font-size: 13px; }
+.tbl thead th {
+  text-align: left;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+  font-weight: 500;
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--border);
+  background: var(--surface);
+}
+.tbl tbody td {
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.tbl tbody tr:hover td { background: var(--surface-2); }
+.tbl tbody tr:last-child td { border-bottom: none; }
+
+/* ---- Modal ---- */
+.modal-backdrop {
+  position: fixed; inset: 0;
+  background: rgba(0,0,0,0.4);
+  display: flex; align-items: flex-start; justify-content: center;
+  z-index: 50;
+  padding: 80px 16px 16px;
+  overflow-y: auto;
+}
+.modal {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  max-width: 640px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.18);
+}
+
+/* ---- Keyboard ---- */
+.kbd {
+  display: inline-flex; align-items: center; justify-content: center;
+  min-width: 18px; height: 18px;
+  padding: 0 5px;
+  font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: var(--muted);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom-width: 2px;
+  border-radius: 4px;
+}
+
+/* ---- Scrollbar ---- */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 10px;
+  border: 2px solid var(--bg);
+}
+::-webkit-scrollbar-track { background: transparent; }
+
+/* ---- Animations ---- */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+.pulse { animation: pulseDot 1.5s ease-in-out infinite; }
+
+/* ---- Misc ---- */
+.divider { height: 1px; background: var(--border); }
+.muted { color: var(--muted); }
+.subtle { color: var(--subtle); }
+.text-mono { font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace; }
+.link { color: var(--accent); }
+.link:hover { text-decoration: underline; }
